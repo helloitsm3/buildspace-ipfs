@@ -14,17 +14,20 @@ const CreateItem= () => {
   }
 
   const client = makeStorageClient();
+  const current = new Date();
   
   
   const [newItem, setNewItem] = useState({
     title: "",
     creator: "", //use wallet address here when using blockchain?
-    image_url: "",
     date_created: "",
     description: "",
   });
   const [file, setFile] = useState({});
   const [uploading, setUploading] = useState(false);
+  const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+
+  
   
   async function onChange(e) {
     setUploading(true);
@@ -33,6 +36,7 @@ const CreateItem= () => {
     try {
       console.log("got file",files[0]);
       setFile({ filename: files[0].name, hash: cid });
+      setNewItem({...newItem, date_created: date})
       alert("Item Grabbed, please finish info and click \"CREATE ITEM\".");
     } catch (error) {
       console.log("Error uploading file: ", error);
@@ -77,7 +81,7 @@ const CreateItem= () => {
             <input
               type="file"
               className={styles.input}
-              accept=".png,.rar,.7zip,.jpeg"
+              accept=".png,.gif,.jpeg,.pdf"
               placeholder="Images"
               onChange={onChange}
             />
@@ -104,24 +108,12 @@ const CreateItem= () => {
                   setNewItem({ ...newItem, creator: e.target.value });
                 }}
               /> 
-            </div>
-            
-            <div className={styles.flex_row}>
-            <h3>Image URL:</h3>
-              <input
-                className={styles.input}
-                type="url"
-                placeholder="Image URL ex: https://i.imgur.com/rVD8bjt.png"
-                onChange={(e) => {
-                  setNewItem({ ...newItem, image_url: e.target.value });
-                }}
-              />
-            </div>      
+            </div>  
             <textarea
               className={styles.text_area}
               placeholder="Description here..."
               onChange={(e) => {
-                setNewItem({ ...newItem, description: e.target.value });
+                setNewItem({ ...newItem, description: e.target.value })
               }}
             />
 
@@ -129,7 +121,8 @@ const CreateItem= () => {
               className={styles.button}
               onClick={() => {
                 createItem();
-                alert("Congrats, you're awesome at following directions!")
+                console.log("Item created!");
+                window.location.reload();// Can we find a better way to reset the page? event handler?
               }}
               disabled={uploading}
             >

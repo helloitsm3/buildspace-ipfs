@@ -5,15 +5,15 @@ export default function handler(req, res){
   if (req.method === "POST"){
     try {
       console.log("body is ", req.body)
-      const { name, price, image_url, description, filename, hash } = req.body;
+      const { title, creator, date_created, description, filename, hash } = req.body;
   
       // Create new item ID based on last item ID
       const maxID = items.reduce((max, item) => Math.max(max, item.id), 0);
       items.push({
         id: maxID + 1,
-        name,
-        price,
-        image_url,
+        title,
+        creator,
+        date_created,
         description,
         filename,
         hash,

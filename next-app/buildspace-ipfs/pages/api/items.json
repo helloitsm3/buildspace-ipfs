@@ -1,16 +1,29 @@
 [
   {
     "id": 1,
-    "image_url": "www.noimg.com",
-    "description": "hmmm",
-    "filename": "Screen Shot 2022-06-22 at 9.40.01 PM.png",
-    "hash": "bafybeiemcih4ypo25chqezrigceqrpsy2eoxtpcq6sc3v7jpfdnfsagapq"
+    "title": "Beam Me Up!",
+    "creator": "Pepe",
+    "date_created": "7/7/2022",
+    "description": "",
+    "filename": "beam1.gif",
+    "hash": "bafybeiea7u26eddqesqo7enqljpp2k2w6gllydcbire2hrszskb7nq4qjm"
   },
   {
     "id": 2,
-    "image_url": "www.noimg.com",
-    "description": "hmmm",
-    "filename": "Screen Shot 2022-06-22 at 9.40.01 PM.png",
-    "hash": "bafybeiemcih4ypo25chqezrigceqrpsy2eoxtpcq6sc3v7jpfdnfsagapq"
+    "title": "Title Field",
+    "creator": "Creator Field",
+    "date_created": "7/7/2022",
+    "description": "Description Field",
+    "filename": "beam1.gif",
+    "hash": "bafybeiea7u26eddqesqo7enqljpp2k2w6gllydcbire2hrszskb7nq4qjm"
+  },
+  {
+    "id": 3,
+    "title": "Beam 2",
+    "creator": "Pepe :D",
+    "date_created": "7/7/2022",
+    "description": "Lolz wut description. Me go Beam.",
+    "filename": "beam1.gif",
+    "hash": "bafybeiea7u26eddqesqo7enqljpp2k2w6gllydcbire2hrszskb7nq4qjm"
   }
 ]
