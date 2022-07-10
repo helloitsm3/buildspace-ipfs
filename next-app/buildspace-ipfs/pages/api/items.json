@@ -25,5 +25,14 @@
     "description": "Lolz wut description. Me go Beam.",
     "filename": "beam1.gif",
     "hash": "bafybeiea7u26eddqesqo7enqljpp2k2w6gllydcbire2hrszskb7nq4qjm"
+  },
+  {
+    "id": 4,
+    "title": "cat",
+    "creator": "@cat",
+    "date_created": "10/7/2022",
+    "description": "cat",
+    "filename": "cat.jpg",
+    "hash": "bafybeicl5kyckcjy2zpdyvg6e4ujjp6wxvioqin7mtpkja3yzxdeczxs3y"
   }
 ]
