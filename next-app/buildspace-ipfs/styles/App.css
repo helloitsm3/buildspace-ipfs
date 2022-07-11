@@ -8,14 +8,10 @@
 }
 
 .App {
+  height: 100vh;
+  background-color: rgb(20, 20, 20);
   text-align: center;
   overflow: hidden;
-  min-height: 100vh;
-}
-
-img {
-  pointer-events: none;
-  -webkit-touch-callout: none;
 }
 
 .container {
@@ -24,19 +20,15 @@ img {
   flex-direction: column;
   justify-content: center;
   padding: 0 30px 0 30px;
-  color: black;
+  color: white;
   position: relative;
 }
 
 .header-container {
-  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   padding: 0 30px 0 30px;
-  color: black;
-  position: relative;
-  z-index: -1;
 }
 
 .authed-container {
@@ -50,7 +42,6 @@ img {
   margin: 0;
   font-size: 50px;
   font-weight: bold;
-  /* background-color: rgba(0, 0, 0, 0.19); */
 }
 
 .sub-text {
@@ -58,7 +49,7 @@ img {
 }
 
 .gradient-text {
-  background: -webkit-linear-gradient(left, #ccfc5b 50%, #c25de4 60%);
+  background: -webkit-linear-gradient(left, #60c657 30%, #35aee2 60%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -71,8 +62,6 @@ img {
   margin-top: 20px;
   
 }
-
-
 .cta-button {
   height: 45px;
   border: 0;
@@ -91,10 +80,6 @@ img {
   background-size: 200% 200%;
   animation: gradient-animation 4s ease infinite;
   max-width: 300px;
-}
-
-.disconnect-button {
-  color: rgb(228, 12, 12);
 }
 
 .mint-button {
@@ -118,12 +103,12 @@ button:disabled {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: absolute; */
+  position: absolute;
   bottom: 0 px;
   width: 100%;
   bottom: 0;
   left: 0;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
 }
 
 .twitter-logo {
@@ -132,7 +117,6 @@ button:disabled {
 }
 
 .footer-text {
-  padding: 5vh;
   font-size: 16px;
   font-weight: bold;
   color: white;
@@ -160,18 +144,16 @@ button:disabled {
   border: 0;
   font-size: 20px;
   font-weight: bold;
-  position: flex;
+  position: fixed;
   top: 20px;
   right: 20px;
   cursor: pointer;
-  background-image: linear-gradient(60deg, #c25de4, #FFB03A);
-  background-clip: text;
-  color: transparent;
+  color:white;
+  background-color: transparent;
   transition: all 0.3s ease;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   z-index: 1;
 }
-
 
 .products-container{
   display: flex;
@@ -180,9 +162,7 @@ button:disabled {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  z-index: -1;
 }
-
 /* KeyFrames */
 @-webkit-keyframes gradient-animation {
   0% {

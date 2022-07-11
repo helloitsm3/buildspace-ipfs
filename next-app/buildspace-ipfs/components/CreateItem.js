@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styles from '../styles/CreateItem.module.css';
 import { Web3Storage } from 'web3.storage';
 
-
 const CreateItem= () => {
   function getAccessToken () {
     const NEXT_PUBLIC_WEB3STORAGE_TOKEN ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDI4NDQyNzlkMDRmRDc2NDJDMUQyNzZhQkRmNDI3ZDBkOWJmMGU0NzkiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NTM0MzIxMDY3MjAsIm5hbWUiOiJkZXYifQ.gFBojcATcuBQeXse4O1OAVEIrrmdKPxyHlK83AaqZrQ'
@@ -16,7 +15,6 @@ const CreateItem= () => {
   const client = makeStorageClient();
   const current = new Date();
   
-  
   const [newItem, setNewItem] = useState({
     title: "",
     creator: "", //use wallet address here when using blockchain?
@@ -26,8 +24,6 @@ const CreateItem= () => {
   const [file, setFile] = useState({});
   const [uploading, setUploading] = useState(false);
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-
-  
   
   async function onChange(e) {
     setUploading(true);
