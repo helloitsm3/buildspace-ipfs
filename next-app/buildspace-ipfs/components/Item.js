@@ -2,7 +2,6 @@ import React from "react";
 import useIPFS from '../hooks/useIPFS';
 import styles from '../styles/CreateItem.module.css';
 
-
 export default function Item({ item }) {
     console.log("this is the item", item);
     const { id, filename, title, creator, date_created, description, hash } = item;
