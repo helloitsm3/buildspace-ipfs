@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "clean": "shx rm -rf .next",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -10,6 +11,12 @@
     "export": "next export"
   },
   "dependencies": {
+    "@nfteyez/sol-rayz": "^0.10.2",
+    "@solana/wallet-adapter-base": "^0.9.8",
+    "@solana/wallet-adapter-react": "^0.15.7",
+    "@solana/wallet-adapter-react-ui": "^0.9.9",
+    "@solana/wallet-adapter-wallets": "^0.16.7",
+    "@solana/web3.js": "^1.47.3",
     "next": "12.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

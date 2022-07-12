@@ -67,8 +67,8 @@ const CreateItem= () => {
 
   return (
     <div className={styles.background_blur}>
-      <div className={styles.create_product_container}>
-        <div className={styles.create_product_form}>
+      <div className={styles.create_item_container}>
+        <div className={styles.create_item_form}>
           <header className={styles.header}>
             <h1>Create Product</h1>
           </header>
@@ -97,7 +97,7 @@ const CreateItem= () => {
             <div className={styles.flex_row}>
             <h3>Creator:</h3>
               <input
-                className={styles.input}
+                className={styles.input_name}
                 type="text"
                 placeholder="@Pepe"
                 onChange={(e) => {

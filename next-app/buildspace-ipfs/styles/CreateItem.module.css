@@ -12,7 +12,7 @@
   height: 100%;
 }
 
-.create_product_container {
+.create_item_container {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   display: flex;
   position: fixed;
@@ -25,7 +25,7 @@
   z-index: 1;
 }
 
-.create_product_form {
+.create_item_form {
   color: white;
   display: flex;
   flex-direction: column;

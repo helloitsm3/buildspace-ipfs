@@ -1,6 +1,5 @@
 import React from "react";
 import useIPFS from '../hooks/useIPFS';
-import styles from '../styles/CreateItem.module.css';
 
 export default function Item({ item }) {
     console.log("this is the item", item);
@@ -8,20 +7,20 @@ export default function Item({ item }) {
     const imgUrl = useIPFS(hash, filename)
 
     return (
-        <div className={styles.product_containter}>
+        <div className='meme'>
             <div>
-                <img className={styles.product_image} src={imgUrl} alt={title} />
+                <img className="meme-img" src={imgUrl} alt={title} />
             </div>
 
-            <div className={styles.product_details}>
-                <div className={styles.product_text}>
-                    <div className={styles.product_title}>{title}</div>
-                    <div className={styles.product_description}>{description}</div>
+            <div className=''>
+                <div className=''>
+                    <div className=''>{title}</div>
+                    <div className=''>{description}</div>
                 </div>
 
-                <div className={styles.product_action}>
-                    <div className={styles.product_price}>{creator}</div>
-                    <div className={styles.product_price}>{date_created}</div>
+                <div className=''>
+                    <div className=''>{creator}</div>
+                    <div className=''>{date_created}</div>
                 </div>
             </div>
         </div>
