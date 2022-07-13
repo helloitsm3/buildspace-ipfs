@@ -63,8 +63,8 @@ export default function App() {
         }
       } 
     }
-    console.log(currentWalletNftsImages)
-    console.log(currentWalletNftSymbols)
+    //console.log(currentWalletNftsImages)
+    //console.log(currentWalletNftSymbols)
   }
   //********************************************************* */
   const renderNftImageContainer = () => (
@@ -87,7 +87,7 @@ export default function App() {
   
   useEffect(() => {
     setMemes(items);
-    console.log("memes are:",memes)
+    //console.log("memes are:",memes)
   }, []);
 
   useEffect(() => {

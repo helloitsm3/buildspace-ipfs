@@ -42,6 +42,13 @@ const CreateItem= () => {
 
   const createItem = async () => {
     try {
+      //adding a check if user has uploaded a file or not
+      if(file // 👈 null and undefined check
+      && Object.keys(file).length === 0
+      && Object.getPrototypeOf(file) === Object.prototype) {
+        alert("Upload File!");
+        return;
+      }
       // Combine product data and file.name
       const item = { ...newItem, ...file };
       console.log("Sending product to api",item);
@@ -117,8 +124,7 @@ const CreateItem= () => {
               className={styles.button}
               onClick={() => {
                 createItem();
-                console.log("Item created!");
-                window.location.reload();// Can we find a better way to reset the page? event handler?
+                //window.location.reload();// Can we find a better way to reset the page? event handler?
               }}
               disabled={uploading}
             >

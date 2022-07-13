@@ -2,7 +2,7 @@ import React from "react";
 import useIPFS from '../hooks/useIPFS';
 
 export default function Item({ item }) {
-    console.log("this is the item", item);
+    //console.log("this is the item", item);
     const { id, filename, title, creator, date_created, description, hash } = item;
     const imgUrl = useIPFS(hash, filename)
 

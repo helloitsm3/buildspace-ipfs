@@ -34,5 +34,23 @@
     "description": "cat",
     "filename": "cat.jpg",
     "hash": "bafybeicl5kyckcjy2zpdyvg6e4ujjp6wxvioqin7mtpkja3yzxdeczxs3y"
+  },
+  {
+    "id": 5,
+    "title": "dog",
+    "creator": "dog",
+    "date_created": "13/7/2022",
+    "description": "dog",
+    "filename": "dog.jpg",
+    "hash": "bafybeid2le2rht6zjs536rnalofimxjuy2ywo6vbljdthn7xghgrc5qm3e"
+  },
+  {
+    "id": 6,
+    "title": "dog",
+    "creator": "dog",
+    "date_created": "13/7/2022",
+    "description": "dog",
+    "filename": "dog2.jpg",
+    "hash": "bafybeihgbhlofnjtz4felhdg4hm5hnst442gfpozoi2mf4nze6zqlvyp2m"
   }
 ]
