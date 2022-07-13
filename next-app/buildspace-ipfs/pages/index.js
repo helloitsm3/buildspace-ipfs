@@ -35,9 +35,6 @@ export default function App() {
       <img src="https://media.giphy.com/media/f8Gk0YteGgcqaEktvD/giphy.gif" alt="access denied" />
     </div>
   );
-  
-
-
   /****************************************************************************** */
   // SOL-Rayz NFT Parsing
   async function checkOwnership() {
@@ -69,7 +66,7 @@ export default function App() {
     console.log(currentWalletNftsImages)
     console.log(currentWalletNftSymbols)
   }
-
+  //********************************************************* */
   const renderNftImageContainer = () => (
     <div className="memes-container">
       {currentWalletNftsImages.map((nft) => (
@@ -109,6 +106,16 @@ export default function App() {
       <header className="header-container">
         {!publicKey && renderNotConnectedContainer()}
         {publicKey && <WalletDisconnectButton />}
+        {publicKey && !accessGranted &&
+          <button className="cta-button" onClick={() => setAccessGranted(true)}>
+            {!accessGranted ? 'Grant Access' : 'Deny Access'}
+          </button>
+        }
+        {publicKey && accessGranted &&
+          <button className="cta-button" onClick={() => setAccessGranted(false)}>
+            {accessGranted ? 'Deny Access' : 'Grant Access'}
+          </button>
+        }
         {publicKey && 
           <button className="cta-button" onClick={() => setViewNfts(!viewNfts)}>
             {viewNfts ? "Back" : "View Nfts in Wallet"}
