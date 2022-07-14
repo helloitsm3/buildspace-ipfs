@@ -6,7 +6,9 @@ import Item from '../components/Item';
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton, WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
 import { resolveToWalletAddress, getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
+import { useCreating } from '../lib/ItemModuleContext';
 
+import listUploads from '../utils/getIPFS';
 
 //Constants
 const TWITTER_HANDLE = "_buildspace";
@@ -18,7 +20,7 @@ export default function App() {
   const { publicKey } = useWallet();
   const [memes, setMemes] = useState([]);
   // Header Button States
-  const [creating, setCreating] = useState(false);
+  const { creating, setCreating } = useCreating();
   const [viewMemes, setViewMemes] = useState(false);
   const [viewNfts, setViewNfts] = useState(false);
   // Solana Wallet ***********************************************************
@@ -79,15 +81,20 @@ export default function App() {
 
   const renderMemesContainer = () => (
     <div className="memes-container">
-      {memes.map((meme) => (
-        <Item key={meme.id} item={meme} className='meme'/>
+      {memes.map((meme, index) => (
+        <Item key={index} item={meme} className='meme'/>
       ))}
     </div>
   );
-  
+  console.log("memes are:", memes)
   useEffect(() => {
-    setMemes(items);
-    //console.log("memes are:",memes)
+
+    const getMemes = async() => {
+      setMemes(await listUploads())
+    }
+
+    getMemes()
+    
   }, []);
 
   useEffect(() => {
