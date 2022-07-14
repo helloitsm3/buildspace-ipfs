@@ -122,7 +122,7 @@ const CreateItem= () => {
               className={styles.button}
               onClick={() => {
                 createItem();
-                //window.location.reload();// Can we find a better way to reset the page? event handler?
+                window.location.reload();// Can we find a better way to reset the page? event handler?
               }}
               disabled={uploading}
             >
