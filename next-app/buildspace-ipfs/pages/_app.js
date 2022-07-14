@@ -10,6 +10,7 @@ import {
   TorusWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
+import { ItemModuleProvider } from "../lib/ItemModuleContext";
 
 import "@solana/wallet-adapter-react-ui/styles.css";
 import "../styles/globals.css";
@@ -40,7 +41,9 @@ const App = ({ Component, pageProps }) => {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
-          <Component {...pageProps} />
+          <ItemModuleProvider>
+            <Component {...pageProps} />
+          </ItemModuleProvider>
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>

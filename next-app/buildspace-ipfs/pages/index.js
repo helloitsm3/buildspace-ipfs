@@ -6,7 +6,7 @@ import Item from '../components/Item';
 import { useWallet } from "@solana/wallet-adapter-react";
 import { WalletMultiButton, WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
 import { resolveToWalletAddress, getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
-
+import { useCreating } from '../lib/ItemModuleContext';
 
 //Constants
 const TWITTER_HANDLE = "_buildspace";
@@ -18,7 +18,7 @@ export default function App() {
   const { publicKey } = useWallet();
   const [memes, setMemes] = useState([]);
   // Header Button States
-  const [creating, setCreating] = useState(false);
+  const { creating, setCreating } = useCreating();
   const [viewMemes, setViewMemes] = useState(false);
   const [viewNfts, setViewNfts] = useState(false);
   // Solana Wallet ***********************************************************
@@ -86,6 +86,7 @@ export default function App() {
   );
   
   useEffect(() => {
+    console.log(items)
     setMemes(items);
     //console.log("memes are:",memes)
   }, []);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from '../styles/CreateItem.module.css';
 import { Web3Storage } from 'web3.storage';
+import { useCreating } from '../lib/ItemModuleContext';
 
 const CreateItem= () => {
   function getAccessToken () {
@@ -21,10 +22,12 @@ const CreateItem= () => {
     date_created: "",
     description: "",
   });
+
   const [file, setFile] = useState({});
   const [uploading, setUploading] = useState(false);
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
-  
+  const { setCreating } = useCreating();
+
   async function onChange(e) {
     setUploading(true);
     const files = e.target.files;
@@ -76,9 +79,14 @@ const CreateItem= () => {
     <div className={styles.background_blur}>
       <div className={styles.create_item_container}>
         <div className={styles.create_item_form}>
+          <span>
           <header className={styles.header}>
             <h1>Create Product</h1>
+            <button onClick={()=>setCreating(false)}>&#10006;</button>
           </header>
+          
+          </span>
+          
 
           <div className={styles.form_container}>
             <input
