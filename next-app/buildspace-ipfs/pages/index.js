@@ -8,6 +8,8 @@ import { WalletMultiButton, WalletDisconnectButton } from "@solana/wallet-adapte
 import { resolveToWalletAddress, getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { useCreating } from '../lib/ItemModuleContext';
 
+import listUploads from '../utils/getIPFS';
+
 //Constants
 const TWITTER_HANDLE = "_buildspace";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
@@ -79,16 +81,20 @@ export default function App() {
 
   const renderMemesContainer = () => (
     <div className="memes-container">
-      {memes.map((meme) => (
-        <Item key={meme.id} item={meme} className='meme'/>
+      {memes.map((meme, index) => (
+        <Item key={index} item={meme} className='meme'/>
       ))}
     </div>
   );
-  
+  console.log("memes are:", memes)
   useEffect(() => {
-    console.log(items)
-    setMemes(items);
-    //console.log("memes are:",memes)
+
+    const getMemes = async() => {
+      setMemes(await listUploads())
+    }
+
+    getMemes()
+    
   }, []);
 
   useEffect(() => {
