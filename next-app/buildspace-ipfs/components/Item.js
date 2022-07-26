@@ -11,10 +11,12 @@ export default function Item({ item }) {
             <p>{d}</p>
             <img className="item-image" src={imgUrl} alt={title} />
 
-            <p>{title}</p>
-            <p>{description}</p>
+            <div className="item-details-container">
+                <span className="item-title">{title}</span>
+                <span className="item-description">{description}</span>
+            </div>
 
-            <p>{creator}</p>
+            <span className="item-creator">{creator}</span>
         </div>
     );
 }

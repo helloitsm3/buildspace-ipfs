@@ -54,7 +54,7 @@ export default function App() {
             <h1 className="site-title">Raza's Wall of Fame</h1>
             <button className="cta-button button-glow">Connect wallet</button>
 
-            <div className="grid">{renderItemContainer()}</div>
+            <section className="grid">{renderItemContainer()}</section>
 
             <footer>
                 <p className="footer-text">
