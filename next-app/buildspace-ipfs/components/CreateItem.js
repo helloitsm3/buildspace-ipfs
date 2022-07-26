@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import styles from '../styles/CreateItem.module.css';
 import { Web3Storage } from 'web3.storage';
-
+import { useCreating } from '../lib/ItemModuleContext';
 
 const CreateItem= () => {
   function getAccessToken () {
-    const NEXT_PUBLIC_WEB3STORAGE_TOKEN ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDI4NDQyNzlkMDRmRDc2NDJDMUQyNzZhQkRmNDI3ZDBkOWJmMGU0NzkiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NTM0MzIxMDY3MjAsIm5hbWUiOiJkZXYifQ.gFBojcATcuBQeXse4O1OAVEIrrmdKPxyHlK83AaqZrQ'
+    //const NEXT_PUBLIC_WEB3STORAGE_TOKEN ='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDI4NDQyNzlkMDRmRDc2NDJDMUQyNzZhQkRmNDI3ZDBkOWJmMGU0NzkiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NTM0MzIxMDY3MjAsIm5hbWUiOiJkZXYifQ.gFBojcATcuBQeXse4O1OAVEIrrmdKPxyHlK83AaqZrQ'
+    const NEXT_PUBLIC_WEB3STORAGE_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEU0ZkI5MDA3MEFDNWRjMDA0MWZCODYxM0Q5Mzg0MGU2NTkxNzlmNUEiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NTAwNjQxMDMzMzksIm5hbWUiOiJuZXdBcGlLZXkifQ.3TrRqcc_BUzMFV8gNIMAs8bhiobDGiGmslYCMYLG3ok';
     return NEXT_PUBLIC_WEB3STORAGE_TOKEN
   }
 
@@ -16,26 +17,24 @@ const CreateItem= () => {
   const client = makeStorageClient();
   const current = new Date();
   
-  
   const [newItem, setNewItem] = useState({
     title: "",
     creator: "", //use wallet address here when using blockchain?
     date_created: "",
     description: "",
   });
+
   const [file, setFile] = useState({});
   const [uploading, setUploading] = useState(false);
   const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+  const { setCreating } = useCreating();
 
-  
-  
   async function onChange(e) {
     setUploading(true);
     const files = e.target.files;
-    const cid = await client.put(files);
+    setFile(files);
     try {
       console.log("got file",files[0]);
-      setFile({ filename: files[0].name, hash: cid });
       setNewItem({...newItem, date_created: date})
       alert("Item Grabbed, please finish info and click \"CREATE ITEM\".");
     } catch (error) {
@@ -46,23 +45,24 @@ const CreateItem= () => {
 
   const createItem = async () => {
     try {
+
+      //adding a check if user has uploaded a file or not
+      if(file.length ===0 ) {
+        alert("Upload File!");
+        return;
+      }
+
       // Combine product data and file.name
-      const item = { ...newItem, ...file };
-      console.log("Sending product to api",item);
-      const response = await fetch("../api/addItem", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(item),
-      });
-      const data = await response.json();
-      if (response.status === 200) {
-        alert("Item added!");
-      }
-      else{
-        alert("Unable to add item: ", data.error);
-      }
+      const item = { ...newItem, filename: file[0].name };
+      console.log(item)
+      const buffer = Buffer.from(JSON.stringify(item))
+      const filesArr = [
+        file[0],
+        new File([buffer], 'metadata.json')
+      ]
+
+      const cid = await client.put(filesArr)
+      console.log(cid)
 
     } catch (error) {
       console.log(error);
@@ -71,10 +71,11 @@ const CreateItem= () => {
 
   return (
     <div className={styles.background_blur}>
-      <div className={styles.create_product_container}>
-        <div className={styles.create_product_form}>
+      <div className={styles.create_item_container}>
+        <div className={styles.create_item_form}>
           <header className={styles.header}>
             <h1>Create Product</h1>
+            <button onClick={()=>setCreating(false)}>&#10006;</button>
           </header>
 
           <div className={styles.form_container}>
@@ -101,7 +102,7 @@ const CreateItem= () => {
             <div className={styles.flex_row}>
             <h3>Creator:</h3>
               <input
-                className={styles.input}
+                className={styles.input_name}
                 type="text"
                 placeholder="@Pepe"
                 onChange={(e) => {
@@ -121,7 +122,6 @@ const CreateItem= () => {
               className={styles.button}
               onClick={() => {
                 createItem();
-                console.log("Item created!");
                 window.location.reload();// Can we find a better way to reset the page? event handler?
               }}
               disabled={uploading}
