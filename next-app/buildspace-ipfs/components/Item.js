@@ -1,30 +1,20 @@
 import React from "react";
-import useIPFS from '../hooks/useIPFS';
-import styles from '../styles/CreateItem.module.css';
-
+import useIPFS from "../hooks/useIPFS";
 
 export default function Item({ item }) {
-    console.log("this is the item", item);
     const { id, filename, title, creator, date_created, description, hash } = item;
-    const imgUrl = useIPFS(hash, filename)
+    const imgUrl = useIPFS(hash, filename);
+    const d = new Date(date_created).toDateString();
 
     return (
-        <div className={styles.product_containter}>
-            <div>
-                <img className={styles.product_image} src={imgUrl} alt={title} />
-            </div>
+        <div className="item-container">
+            <p>{d}</p>
+            <img className="item-image" src={imgUrl} alt={title} />
 
-            <div className={styles.product_details}>
-                <div className={styles.product_text}>
-                    <div className={styles.product_title}>{title}</div>
-                    <div className={styles.product_description}>{description}</div>
-                </div>
+            <p>{title}</p>
+            <p>{description}</p>
 
-                <div className={styles.product_action}>
-                    <div className={styles.product_price}>{creator}</div>
-                    <div className={styles.product_price}>{date_created}</div>
-                </div>
-            </div>
+            <p>{creator}</p>
         </div>
     );
 }
