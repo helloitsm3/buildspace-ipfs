@@ -25,5 +25,32 @@
     "description": "Lolz wut description. Me go Beam.",
     "filename": "beam1.gif",
     "hash": "bafybeiea7u26eddqesqo7enqljpp2k2w6gllydcbire2hrszskb7nq4qjm"
+  },
+  {
+    "id": 4,
+    "title": "cat",
+    "creator": "@cat",
+    "date_created": "10/7/2022",
+    "description": "cat",
+    "filename": "cat.jpg",
+    "hash": "bafybeicl5kyckcjy2zpdyvg6e4ujjp6wxvioqin7mtpkja3yzxdeczxs3y"
+  },
+  {
+    "id": 5,
+    "title": "dog",
+    "creator": "dog",
+    "date_created": "13/7/2022",
+    "description": "dog",
+    "filename": "dog.jpg",
+    "hash": "bafybeid2le2rht6zjs536rnalofimxjuy2ywo6vbljdthn7xghgrc5qm3e"
+  },
+  {
+    "id": 6,
+    "title": "dog",
+    "creator": "dog",
+    "date_created": "13/7/2022",
+    "description": "dog",
+    "filename": "dog2.jpg",
+    "hash": "bafybeihgbhlofnjtz4felhdg4hm5hnst442gfpozoi2mf4nze6zqlvyp2m"
   }
 ]
