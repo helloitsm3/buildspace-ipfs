@@ -1,0 +1,10 @@
+.item-container {
+    display: flex;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.07);
+    flex-direction: column;
+}
+
+.item-image {
+    width: 100px;
+}
