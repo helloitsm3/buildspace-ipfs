@@ -10,3 +10,20 @@
 .button-text {
     width: 100%;
 }
+
+.dc-btn {
+    background-color: #cc3e3e;
+    color: white;
+    margin-left: 20px;
+}
+
+.gated-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.gated-container > button {
+    gap: 12px;
+    margin: 25px 0;
+}

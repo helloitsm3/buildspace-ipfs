@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import GatedAccess from "./GatedAccess";
+
+import { useEffect, useState } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-
-import { useWallet } from "@solana/wallet-adapter-react";
 import { resolveToWalletAddress, getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { WalletMultiButton, WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
 
@@ -10,9 +11,11 @@ const Wallet = () => {
     const { address } = useAccount();
     const { publicKey } = useWallet();
     const { disconnect } = useDisconnect();
+
     const { connect } = useConnect({
         connector: new InjectedConnector(),
     });
+    const [accessGranted, setAccessGranted] = useState(false);
 
     useEffect(() => {
         if (publicKey) {
@@ -53,7 +56,7 @@ const Wallet = () => {
         return (
             <div>
                 Connected to {address}
-                <button className="cta-button" onClick={() => disconnect()}>
+                <button className="cta-button dc-btn" onClick={() => disconnect()}>
                     Disconnect
                 </button>
             </div>
@@ -61,7 +64,12 @@ const Wallet = () => {
     }
 
     if (publicKey) {
-        return <WalletDisconnectButton />;
+        return (
+            <div>
+                <WalletDisconnectButton />
+                <GatedAccess accessGranted={accessGranted} setAccessGranted={setAccessGranted} />
+            </div>
+        );
     }
 
     return (
