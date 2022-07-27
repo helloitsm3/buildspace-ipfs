@@ -2,12 +2,12 @@ import React from "react";
 import useIPFS from '../hooks/useIPFS';
 
 export default function Item({ item }) {
-    //console.log("this is the item", item);
-    const { id, filename, title, creator, date_created, description, hash } = item;
-    const imgUrl = useIPFS(hash, filename)
+    console.log("this is the item", item[1][0]);
+    const { id, title, creator, date_created, description} = item[1][0];
+    const imgUrl = useIPFS(item[0][0].path);
 
     return (
-        <div className='meme'>
+        <div className='meme' key={id}>
             <div>
                 <img className="meme-img" src={imgUrl} alt={title} />
             </div>

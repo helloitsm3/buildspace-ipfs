@@ -71,7 +71,7 @@ export default function App() {
   //********************************************************* */
   const renderNftImageContainer = () => (
     <div className="memes-container">
-      {currentWalletNftsImages.map((nft) => (
+      {currentWalletNftsImages.splice(0, 4).map((nft) => (
         <div key={nft.id}>
           <img src={nft} className='meme'/>
         </div>
@@ -86,11 +86,13 @@ export default function App() {
       ))}
     </div>
   );
-  console.log("memes are:", memes)
+
   useEffect(() => {
 
     const getMemes = async() => {
-      setMemes(await listUploads())
+      const results = await listUploads();
+      console.log("results are:", results)
+      setMemes(results);
     }
 
     getMemes()

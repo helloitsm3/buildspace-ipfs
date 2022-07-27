@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Web3Storage } from 'web3.storage'
 import { create } from 'ipfs-http-client';
 
@@ -17,6 +18,7 @@ async function listUploads() {
     const client = makeStorageClient()
     for await (const upload of client.list()) {
       const _res = await getLinks(upload.cid);
+      console.log("_res is: ", _res[0]);
       itemsArr.push(_res)
     }
 
@@ -26,24 +28,28 @@ async function listUploads() {
 async function getLinks(ipfsPath) {
   const url = 'https://dweb.link/api/v0';
   const ipfs = create({ url });
-
   const links = [];
+  const metadata = [];
   for await (const link of ipfs.ls(ipfsPath)) {
-    links.push(link);
-  }
+    // for the index with the link path ending in 'metadata.json' we want to get the metadata, otherwise we want the link
+    if (link.name.endsWith('metadata.json')) {
+      console.log("link is: ", link);
+      const _index = link.path;
+      const _metadataURL = "https://ipfs.io/ipfs/"+_index;
+      console.log("_metadataURL is: ", _metadataURL);
+      const _metadata = await fetch(_metadataURL);
 
-  try {
-    if(links[1]["name"]==="metadata.json") {
-        const _index = links[1]["path"].indexOf("/");
-        const _metadataURL = "https://"+links[1]["path"].substring(0, _index)+".ipfs.dweb.link/metadata.json";
-        let _res = await fetch(_metadataURL).then(res => { return res.json() });
-        _res["hash"] = links[1]["path"].substring(0, _index);
-        return _res;
+      if(_metadata){
+        const _data = await _metadata.json();
+        console.log("_data is: ", _data);
+        metadata.push(_data);
       }
-  } catch(err) {
-    return {}
+    }
+    else {
+      links.push(link);
+    }
   }
-  
+  return [links, metadata];
 }
 
 export default listUploads;
