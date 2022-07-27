@@ -1,0 +1,12 @@
+.wallet-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.wallet-container > button {
+    margin: 0 15px;
+}
+
+.button-text {
+    width: 100%;
+}

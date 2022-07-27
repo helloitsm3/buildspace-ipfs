@@ -13,9 +13,18 @@ import { clusterApiUrl } from "@solana/web3.js";
 import { ItemModuleProvider } from "../lib/ItemModuleContext";
 import { ItemsProvider } from "../lib/ItemsContext";
 
-import "@solana/wallet-adapter-react-ui/styles.css";
-import "../styles/globals.css";
+import { getDefaultProvider } from "ethers";
+import { WagmiConfig, createClient } from "wagmi";
+
 import "../styles/App.css";
+import "../styles/Wallet.css";
+import "../styles/globals.css";
+import "@solana/wallet-adapter-react-ui/styles.css";
+
+const client = createClient({
+    autoConnect: true,
+    provider: getDefaultProvider(),
+});
 
 const App = ({ Component, pageProps }) => {
     // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
@@ -39,17 +48,19 @@ const App = ({ Component, pageProps }) => {
     );
 
     return (
-        <ConnectionProvider endpoint={endpoint}>
-            <WalletProvider wallets={wallets} autoConnect>
-                <WalletModalProvider>
-                    <ItemsProvider>
-                        <ItemModuleProvider>
-                            <Component {...pageProps} />
-                        </ItemModuleProvider>
-                    </ItemsProvider>
-                </WalletModalProvider>
-            </WalletProvider>
-        </ConnectionProvider>
+        <WagmiConfig client={client}>
+            <ConnectionProvider endpoint={endpoint}>
+                <WalletProvider wallets={wallets} autoConnect>
+                    <WalletModalProvider>
+                        <ItemsProvider>
+                            <ItemModuleProvider>
+                                <Component {...pageProps} />
+                            </ItemModuleProvider>
+                        </ItemsProvider>
+                    </WalletModalProvider>
+                </WalletProvider>
+            </ConnectionProvider>
+        </WagmiConfig>
     );
 };
 

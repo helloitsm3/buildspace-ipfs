@@ -26,6 +26,13 @@
     color: white;
 }
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .cta-button {
     height: 45px;
     border: 0;
