@@ -1,28 +1,22 @@
 import React from "react";
-import useIPFS from '../hooks/useIPFS';
+import useIPFS from "../hooks/useIPFS";
 
 export default function Item({ item }) {
-    console.log("this is the item", item[1][0]);
-    const { id, title, creator, date_created, description} = item[1][0];
-    const imgUrl = useIPFS(item[0][0].path);
+    const { id, filename, title, creator, date_created, description, hash } = item;
+    const imgUrl = useIPFS(hash, filename);
+    const d = new Date(date_created).toDateString();
 
     return (
-        <div className='meme' key={id}>
-            <div>
-                <img className="meme-img" src={imgUrl} alt={title} />
+        <div className="item-container">
+            <p>{d}</p>
+            <img className="item-image" src={imgUrl} alt={title} />
+
+            <div className="item-details-container">
+                <span className="item-title">{title}</span>
+                <span className="item-description">{description}</span>
             </div>
 
-            <div className=''>
-                <div className=''>
-                    <div className=''>{title}</div>
-                    <div className=''>{description}</div>
-                </div>
-
-                <div className=''>
-                    <div className=''>{creator}</div>
-                    <div className=''>{date_created}</div>
-                </div>
-            </div>
+            <span className="item-creator">{creator}</span>
         </div>
     );
 }
