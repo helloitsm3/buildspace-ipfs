@@ -17,6 +17,7 @@ import { getDefaultProvider } from "ethers";
 import { WagmiConfig, createClient } from "wagmi";
 
 import "../styles/App.css";
+import "../styles/Item.css";
 import "../styles/Wallet.css";
 import "../styles/globals.css";
 import "@solana/wallet-adapter-react-ui/styles.css";
