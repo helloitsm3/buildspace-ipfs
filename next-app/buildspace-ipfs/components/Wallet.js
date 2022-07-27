@@ -67,7 +67,7 @@ const Wallet = () => {
 
     if (publicKey) {
         return (
-            <div>
+            <div className="dc-container">
                 <WalletDisconnectButton />
                 <GatedAccess
                     accessGranted={accessGranted}

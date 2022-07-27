@@ -21,9 +21,16 @@
     display: inline-flex;
     flex-wrap: wrap;
     gap: 12px;
+    justify-content: center;
 }
 
 .gated-container > button {
     gap: 12px;
     margin: 25px 0;
+}
+
+.dc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useCreating } from "../lib/ItemModuleContext";
 
+import Memes from "./Memes";
 import CreateItem from "./CreateItem";
 
 const GatedAccess = ({ accessGranted, setAccessGranted, currentWalletNftsImages }) => {
@@ -41,11 +42,6 @@ const GatedAccess = ({ accessGranted, setAccessGranted, currentWalletNftsImages 
                 {viewNfts ? "Back" : "View Nfts in Wallet"}
             </button>
 
-            {creating && <CreateItem />}
-            {viewMemes && renderMemesContainer()}
-            {viewNfts && renderNftImageContainer()}
-            {!accessGranted && renderAccessDeniedContainer()}
-
             {accessGranted ? (
                 <>
                     <button className="cta-button" onClick={() => setCreating(!creating)}>
@@ -56,6 +52,11 @@ const GatedAccess = ({ accessGranted, setAccessGranted, currentWalletNftsImages 
                     </button>
                 </>
             ) : null}
+
+            {creating && <CreateItem />}
+            {viewMemes && <Memes />}
+            {viewNfts && renderNftImageContainer()}
+            {!accessGranted && renderAccessDeniedContainer()}
         </div>
     );
 };

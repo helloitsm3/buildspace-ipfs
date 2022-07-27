@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Item from "./Item";
 import listUploads from "../utils/getIPFS";
