@@ -2,14 +2,25 @@ import React from "react";
 import useIPFS from "../hooks/useIPFS";
 
 export default function Item({ item }) {
-    const { id, filename, title, creator, date_created, description, hash } = item;
-    const imgUrl = useIPFS(hash, filename);
+    // const { filename, title, creator, date_created, description, cid } = item;
+    const [el1, el2] = item;
+    const [{ path }] = el1;
+    const [{ title, creator, date_created, description, filename }] = el2;
+
+    const imgUrl = useIPFS(path);
     const d = new Date(date_created).toDateString();
+
+    function isValidDate(d) {
+        return d instanceof Date && !isNaN(d);
+    }
 
     return (
         <div className="item-container">
-            <p>{d}</p>
-            <img className="item-image" src={imgUrl} alt={title} />
+            <p>{isValidDate(d) ? d : date_created}</p>
+
+            <div className="img-container">
+                <img className="item-image" src={imgUrl} alt={title} />
+            </div>
 
             <div className="item-details-container">
                 <span className="item-title">{title}</span>

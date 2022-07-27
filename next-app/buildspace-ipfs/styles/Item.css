@@ -8,6 +8,7 @@
 .item-image {
     width: 300px;
     border-radius: 10px;
+    align-self: flex-start;
 }
 
 .item-description {
@@ -36,4 +37,8 @@
     padding: 10px 0;
     padding-bottom: 25px;
     width: 85%;
+}
+
+.img-container {
+    min-height: 300px;
 }

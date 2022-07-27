@@ -42,13 +42,9 @@ export default function App() {
         </div>
     );
 
-    const renderMemesContainer = () => (
-        <div className="memes-container">
-            {memes.map((meme, index) => (
-                <Item key={index} item={meme} className="meme" />
-            ))}
-        </div>
-    );
+    const renderMemesContainer = () => {
+        return memes.map((meme, index) => <Item key={index} item={meme} className="meme" />);
+    };
 
     useEffect(() => {
         const getMemes = async () => {
