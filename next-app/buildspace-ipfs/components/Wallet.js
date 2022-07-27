@@ -36,10 +36,10 @@ const Wallet = () => {
             if (results) {
                 const data = await results.json();
                 if (data.image != undefined) {
-                    currentWalletNftsImages.push(data.image);
+                    // currentWalletNftsImages.push(data.image);
                 }
                 if (data.symbol != undefined) {
-                    currentWalletNftSymbols.push(data.symbol);
+                    // currentWalletNftSymbols.push(data.symbol);
                     // SET ACCESS GRANTE SYMBOL HERE******
                     if (data.symbol === "NOOT") {
                         setAccessGranted(true);
