@@ -17,6 +17,7 @@ var currentWalletNftSymbols = [];
 
 export default function App() {
     const [memes, setMemes] = useState([]);
+    const [isLoading, setLoading] = useState(true);
     // Header Button States
     const { creating, setCreating } = useCreating();
     const [viewMemes, setViewMemes] = useState(false);
@@ -42,8 +43,14 @@ export default function App() {
         </div>
     );
 
+    useEffect(() => {
+        if (memes.length > 0) {
+            setLoading(false);
+        }
+    }, [memes]);
+
     const renderMemesContainer = () => {
-        return memes.map((meme, index) => <Item key={index} item={meme} className="meme" />);
+        return memes.map((meme, index) => <Item key={index} item={meme} setLoading={setLoading} className="meme" />);
     };
 
     useEffect(() => {
@@ -68,7 +75,10 @@ export default function App() {
                 <h1 className="site-title">Raza's Wall of Fame</h1>
                 <Wallet />
 
-                <section className="grid">{renderMemesContainer()}</section>
+                <section className="memes-container">
+                    {isLoading && <span>Loading...</span>}
+                    <div className="grid">{renderMemesContainer()}</div>
+                </section>
             </main>
 
             <footer>
