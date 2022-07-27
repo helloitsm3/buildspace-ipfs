@@ -1,10 +1,28 @@
 import React, { useState } from "react";
 import { useCreating } from "../lib/ItemModuleContext";
 
+import CreateItem from "./CreateItem";
+
 const GatedAccess = ({ accessGranted, setAccessGranted }) => {
     const [viewNfts, setViewNfts] = useState(false);
     const [viewMemes, setViewMemes] = useState(false);
     const { creating, setCreating } = useCreating();
+
+    const renderAccessDeniedContainer = () => (
+        <div className="memes-container">
+            <img src="https://media.giphy.com/media/f8Gk0YteGgcqaEktvD/giphy.gif" alt="access denied" />
+        </div>
+    );
+
+    const renderNftImageContainer = () => (
+        <div className="memes-container">
+            {currentWalletNftsImages.splice(0, 4).map((nft) => (
+                <div key={nft.id}>
+                    <img src={nft} className="meme" />
+                </div>
+            ))}
+        </div>
+    );
 
     return (
         <div className="gated-container">
@@ -22,6 +40,11 @@ const GatedAccess = ({ accessGranted, setAccessGranted }) => {
             <button className="cta-button" onClick={() => setViewNfts(!viewNfts)}>
                 {viewNfts ? "Back" : "View Nfts in Wallet"}
             </button>
+
+            {creating && <CreateItem />}
+            {viewMemes && renderMemesContainer()}
+            {viewNfts && renderNftImageContainer()}
+            {!accessGranted && renderAccessDeniedContainer()}
 
             {accessGranted ? (
                 <>

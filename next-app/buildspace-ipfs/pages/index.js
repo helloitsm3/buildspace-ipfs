@@ -1,62 +1,14 @@
 import Head from "next/head";
 import items from "./api/items.json";
-import Item from "../components/Item";
 import Wallet from "../components/Wallet";
-import listUploads from "../utils/getIPFS";
-import CreateItem from "../components/CreateItem";
 
 import React, { useState, useEffect } from "react";
 
 //Constants
 const TWITTER_HANDLE = "_buildspace";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-var currentWalletNftsImages = [];
-var currentWalletNftSymbols = [];
 
 export default function App() {
-    const [memes, setMemes] = useState([]);
-    const [isLoading, setLoading] = useState(true);
-
-    // Solana Wallet ***********************************************************
-
-    const renderAccessDeniedContainer = () => (
-        <div className="memes-container">
-            <img src="https://media.giphy.com/media/f8Gk0YteGgcqaEktvD/giphy.gif" alt="access denied" />
-        </div>
-    );
-    /****************************************************************************** */
-
-    //********************************************************* */
-    const renderNftImageContainer = () => (
-        <div className="memes-container">
-            {currentWalletNftsImages.splice(0, 4).map((nft) => (
-                <div key={nft.id}>
-                    <img src={nft} className="meme" />
-                </div>
-            ))}
-        </div>
-    );
-
-    useEffect(() => {
-        if (memes.length > 0) {
-            setLoading(false);
-        }
-    }, [memes]);
-
-    const renderMemesContainer = () => {
-        return memes.map((meme, index) => <Item key={index} item={meme} setLoading={setLoading} className="meme" />);
-    };
-
-    useEffect(() => {
-        const getMemes = async () => {
-            const results = await listUploads();
-            console.log("results are:", results);
-            setMemes(results);
-        };
-
-        getMemes();
-    }, []);
-
     return (
         <div className="container">
             <Head>
@@ -68,11 +20,6 @@ export default function App() {
             <main className="main-container">
                 <h1 className="site-title">Raza's Wall of Fame</h1>
                 <Wallet />
-
-                <section className="memes-container">
-                    {isLoading && <span>Loading...</span>}
-                    <div className="grid">{renderMemesContainer()}</div>
-                </section>
             </main>
 
             <footer>
@@ -82,22 +29,4 @@ export default function App() {
             </footer>
         </div>
     );
-
-    // return (
-    //     <div className="App">
-    //         <main className="">
-    //             {/* Change if you want Access Granted based on PublicKey being present or Access Granted being true*/}
-    //             {/* {publicKey && creating && <CreateItem />} */}
-    //             {creating && <CreateItem />}
-    //             {viewMemes && renderMemesContainer()}
-    //             {viewNfts && renderNftImageContainer()}
-    //             {publicKey && !accessGranted && renderAccessDeniedContainer()}
-    //         </main>
-
-    //         <div className="footer-container">
-    //             <img alt="Twitter Logo" className="twitter-logo" src="twitter-logo.svg" />
-    //             <a className="footer-text" href={TWITTER_LINK} target="_blank" rel="noreferrer">{`built on @${TWITTER_HANDLE}`}</a>
-    //         </div>
-    //     </div>
-    // );
 }

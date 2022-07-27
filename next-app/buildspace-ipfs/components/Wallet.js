@@ -7,6 +7,9 @@ import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { resolveToWalletAddress, getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { WalletMultiButton, WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
 
+var currentWalletNftsImages = [];
+var currentWalletNftSymbols = [];
+
 const Wallet = () => {
     const { address } = useAccount();
     const { publicKey } = useWallet();
@@ -16,6 +19,7 @@ const Wallet = () => {
         connector: new InjectedConnector(),
     });
     const [accessGranted, setAccessGranted] = useState(false);
+    const [currentWalletNftsImages, setWalletNftsImages] = useState([]);
 
     useEffect(() => {
         if (publicKey) {
