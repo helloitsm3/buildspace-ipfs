@@ -3,7 +3,7 @@ import { useCreating } from "../lib/ItemModuleContext";
 
 import CreateItem from "./CreateItem";
 
-const GatedAccess = ({ accessGranted, setAccessGranted }) => {
+const GatedAccess = ({ accessGranted, setAccessGranted, currentWalletNftsImages }) => {
     const [viewNfts, setViewNfts] = useState(false);
     const [viewMemes, setViewMemes] = useState(false);
     const { creating, setCreating } = useCreating();

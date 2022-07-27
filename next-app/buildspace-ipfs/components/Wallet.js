@@ -7,9 +7,6 @@ import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { resolveToWalletAddress, getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { WalletMultiButton, WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
 
-var currentWalletNftsImages = [];
-var currentWalletNftSymbols = [];
-
 const Wallet = () => {
     const { address } = useAccount();
     const { publicKey } = useWallet();
@@ -20,6 +17,7 @@ const Wallet = () => {
     });
     const [accessGranted, setAccessGranted] = useState(false);
     const [currentWalletNftsImages, setWalletNftsImages] = useState([]);
+    const [currentWalletNftSymbols, setWalletNftSymbols] = useState([]);
 
     useEffect(() => {
         if (publicKey) {
@@ -43,10 +41,10 @@ const Wallet = () => {
             if (results) {
                 const data = await results.json();
                 if (data.image != undefined) {
-                    // currentWalletNftsImages.push(data.image);
+                    setWalletNftsImages([...currentWalletNftsImages, data.image]);
                 }
                 if (data.symbol != undefined) {
-                    // currentWalletNftSymbols.push(data.symbol);
+                    setWalletNftSymbols([...currentWalletNftSymbols, data.symbol]);
                     // SET ACCESS GRANTE SYMBOL HERE******
                     if (data.symbol === "NOOT") {
                         setAccessGranted(true);
@@ -71,7 +69,11 @@ const Wallet = () => {
         return (
             <div>
                 <WalletDisconnectButton />
-                <GatedAccess accessGranted={accessGranted} setAccessGranted={setAccessGranted} />
+                <GatedAccess
+                    accessGranted={accessGranted}
+                    setAccessGranted={setAccessGranted}
+                    currentWalletNftsImages={currentWalletNftsImages}
+                />
             </div>
         );
     }
