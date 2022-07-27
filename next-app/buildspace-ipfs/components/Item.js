@@ -1,11 +1,10 @@
 import React from "react";
 import useIPFS from "../hooks/useIPFS";
 
-export default function Item({ item }) {
-    // const { filename, title, creator, date_created, description, cid } = item;
+export default function Item({ item, setLoading }) {
     const [el1, el2] = item;
     const [{ path }] = el1;
-    const [{ title, creator, date_created, description, filename }] = el2;
+    const [{ title, creator, date_created, description }] = el2;
 
     const imgUrl = useIPFS(path);
     const d = new Date(date_created).toDateString();

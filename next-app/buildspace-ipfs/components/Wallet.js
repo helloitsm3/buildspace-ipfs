@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import GatedAccess from "./GatedAccess";
+
+import { useEffect, useState } from "react";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
-
-import { useWallet } from "@solana/wallet-adapter-react";
 import { resolveToWalletAddress, getParsedNftAccountsByOwner } from "@nfteyez/sol-rayz";
 import { WalletMultiButton, WalletDisconnectButton } from "@solana/wallet-adapter-react-ui";
 
@@ -10,9 +11,13 @@ const Wallet = () => {
     const { address } = useAccount();
     const { publicKey } = useWallet();
     const { disconnect } = useDisconnect();
+
     const { connect } = useConnect({
         connector: new InjectedConnector(),
     });
+    const [accessGranted, setAccessGranted] = useState(false);
+    const [currentWalletNftsImages, setWalletNftsImages] = useState([]);
+    const [currentWalletNftSymbols, setWalletNftSymbols] = useState([]);
 
     useEffect(() => {
         if (publicKey) {
@@ -36,10 +41,10 @@ const Wallet = () => {
             if (results) {
                 const data = await results.json();
                 if (data.image != undefined) {
-                    // currentWalletNftsImages.push(data.image);
+                    setWalletNftsImages([...currentWalletNftsImages, data.image]);
                 }
                 if (data.symbol != undefined) {
-                    // currentWalletNftSymbols.push(data.symbol);
+                    setWalletNftSymbols([...currentWalletNftSymbols, data.symbol]);
                     // SET ACCESS GRANTE SYMBOL HERE******
                     if (data.symbol === "NOOT") {
                         setAccessGranted(true);
@@ -53,7 +58,7 @@ const Wallet = () => {
         return (
             <div>
                 Connected to {address}
-                <button className="cta-button" onClick={() => disconnect()}>
+                <button className="cta-button dc-btn" onClick={() => disconnect()}>
                     Disconnect
                 </button>
             </div>
@@ -61,7 +66,16 @@ const Wallet = () => {
     }
 
     if (publicKey) {
-        return <WalletDisconnectButton />;
+        return (
+            <div className="dc-container">
+                <WalletDisconnectButton />
+                <GatedAccess
+                    accessGranted={accessGranted}
+                    setAccessGranted={setAccessGranted}
+                    currentWalletNftsImages={currentWalletNftsImages}
+                />
+            </div>
+        );
     }
 
     return (
