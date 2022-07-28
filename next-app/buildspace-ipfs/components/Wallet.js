@@ -57,7 +57,6 @@ const Wallet = () => {
     if (address) {
         return (
             <div>
-                Connected to {address}
                 <button className="cta-button dc-btn" onClick={() => disconnect()}>
                     Disconnect
                 </button>

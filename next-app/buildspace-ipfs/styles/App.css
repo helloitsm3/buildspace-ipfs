@@ -7,6 +7,17 @@
     --main-font-family: "Poppins", sans-serif;
 }
 
+footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.footer-img {
+    height: 40px;
+}
+
 .App {
     text-align: center;
     overflow: hidden;
@@ -29,8 +40,11 @@
 .main-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-end;
+    min-height: 90vh;
+    min-width: 100vw;
+    padding: 0 15px;
 }
 
 .cta-button {
@@ -60,21 +74,12 @@
     margin-left: 10px;
 }
 
-.site-title {
-    font-size: 3em;
-}
-
 .footer-text {
-    font-size: 2em;
+    font-size: 1em;
     font-weight: bold;
     display: flex;
     justify-center: center;
     align-items: center;
-}
-
-.footer-x {
-    padding: 0 15px;
-    font-size: 0.8em;
 }
 
 .grid {

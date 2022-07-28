@@ -18,14 +18,14 @@ export default function App() {
             </Head>
 
             <main className="main-container">
-                <h1 className="site-title">Raza's Wall of Fame</h1>
                 <Wallet />
             </main>
 
             <footer>
-                <p className="footer-text">
-                    buildspace <span className="footer-x">✕</span> IPFS
-                </p>
+                <a href="https://twitter.com/_buildspace">
+                    <img src="twitter-logo.svg" className="footer-img" />
+                </a>
+                <p className="footer-text">built on @_buildspace</p>
             </footer>
         </div>
     );
