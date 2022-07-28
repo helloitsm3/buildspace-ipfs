@@ -9,7 +9,6 @@ const Memes = () => {
     useEffect(() => {
         const getMemes = async () => {
             const results = await listUploads();
-            console.log("results are:", results);
             setMemes(results);
         };
 
