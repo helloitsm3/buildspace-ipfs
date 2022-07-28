@@ -1,4 +1,5 @@
 import GatedAccess from "./GatedAccess";
+import DiscordLogin from "./DiscordLogin";
 
 import { useEffect, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -56,8 +57,7 @@ const Wallet = () => {
 
     if (address) {
         return (
-            <div>
-                Connected to {address}
+            <div className="main-container">
                 <button className="cta-button dc-btn" onClick={() => disconnect()}>
                     Disconnect
                 </button>
@@ -68,7 +68,10 @@ const Wallet = () => {
     if (publicKey) {
         return (
             <div className="dc-container">
-                <WalletDisconnectButton />
+                <div className="sol-disconnect-btn">
+                    <WalletDisconnectButton />
+                </div>
+
                 <GatedAccess
                     accessGranted={accessGranted}
                     setAccessGranted={setAccessGranted}
@@ -79,7 +82,7 @@ const Wallet = () => {
     }
 
     return (
-        <div className="wallet-container">
+        <div className="wallet-container main-container">
             <button className="cta-button button-glow" onClick={() => connect()}>
                 Metamask
             </button>
@@ -87,6 +90,8 @@ const Wallet = () => {
             <WalletMultiButton className="cta-button button-glow">
                 <span className="button-text">Solana</span>
             </WalletMultiButton>
+
+            <DiscordLogin />
         </div>
     );
 };

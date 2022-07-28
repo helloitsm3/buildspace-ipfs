@@ -1,12 +1,7 @@
 import Head from "next/head";
-import items from "./api/items.json";
 import Wallet from "../components/Wallet";
 
-import React, { useState, useEffect } from "react";
-
-//Constants
-const TWITTER_HANDLE = "_buildspace";
-const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
+import React from "react";
 
 export default function App() {
     return (
@@ -17,15 +12,15 @@ export default function App() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="main-container">
-                <h1 className="site-title">Raza's Wall of Fame</h1>
+            <main className="m-container">
                 <Wallet />
             </main>
 
             <footer>
-                <p className="footer-text">
-                    buildspace <span className="footer-x">✕</span> IPFS
-                </p>
+                <a href="https://twitter.com/_buildspace">
+                    <img src="twitter-logo.svg" className="footer-img" />
+                </a>
+                <p className="footer-text">built on @_buildspace</p>
             </footer>
         </div>
     );
