@@ -18,7 +18,6 @@ async function listUploads() {
     const client = makeStorageClient()
     for await (const upload of client.list()) {
       const _res = await getLinks(upload.cid);
-      console.log("_res is: ", _res[0]);
       itemsArr.push(_res)
     }
 
@@ -33,15 +32,12 @@ async function getLinks(ipfsPath) {
   for await (const link of ipfs.ls(ipfsPath)) {
     // for the index with the link path ending in 'metadata.json' we want to get the metadata, otherwise we want the link
     if (link.name.endsWith('metadata.json')) {
-      console.log("link is: ", link);
       const _index = link.path;
       const _metadataURL = "https://ipfs.io/ipfs/"+_index;
-      console.log("_metadataURL is: ", _metadataURL);
       const _metadata = await fetch(_metadataURL);
 
       if(_metadata){
         const _data = await _metadata.json();
-        console.log("_data is: ", _data);
         metadata.push(_data);
       }
     }
