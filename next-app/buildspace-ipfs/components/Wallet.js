@@ -56,7 +56,7 @@ const Wallet = () => {
 
     if (address) {
         return (
-            <div>
+            <div className="main-container">
                 <button className="cta-button dc-btn" onClick={() => disconnect()}>
                     Disconnect
                 </button>
@@ -67,7 +67,10 @@ const Wallet = () => {
     if (publicKey) {
         return (
             <div className="dc-container">
-                <WalletDisconnectButton />
+                <div className="sol-disconnect-btn">
+                    <WalletDisconnectButton />
+                </div>
+
                 <GatedAccess
                     accessGranted={accessGranted}
                     setAccessGranted={setAccessGranted}
@@ -78,7 +81,7 @@ const Wallet = () => {
     }
 
     return (
-        <div className="wallet-container">
+        <div className="wallet-container main-container">
             <button className="cta-button button-glow" onClick={() => connect()}>
                 Metamask
             </button>

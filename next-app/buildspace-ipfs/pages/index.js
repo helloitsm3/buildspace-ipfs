@@ -17,7 +17,7 @@ export default function App() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="main-container">
+            <main>
                 <Wallet />
             </main>
 
