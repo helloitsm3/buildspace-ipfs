@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from '../styles/CreateItem.module.css';
 import { Web3Storage } from 'web3.storage';
 import { useCreating } from '../lib/ItemModuleContext';
@@ -45,7 +45,6 @@ const CreateItem= () => {
 
   const createItem = async () => {
     try {
-
       //adding a check if user has uploaded a file or not
       if(file.length ===0 ) {
         alert("Upload File!");
@@ -63,7 +62,24 @@ const CreateItem= () => {
 
       const cid = await client.put(filesArr)
       console.log(cid)
-
+      async function checkStatus (cid) {
+        const status = await client.status(cid)
+        if (status) {
+          // your code to do something fun with the status info here
+          console.log("current status:", status)
+          // check status every second until status.pins.length is greater than one
+          if (status.pins.length < 1) {
+            setTimeout(() => checkStatus(cid), 1000)
+          }
+          // when status.pins.length is greater than one then alert user that item has been created and display the cid
+          if (status.pins.length > 0) {
+            alert("Item Created! CID: " + cid)
+            setCreating(false);
+          }
+        }
+      }
+      // check status every second until complete
+      checkStatus(cid)
     } catch (error) {
       console.log(error);
     }
@@ -82,7 +98,7 @@ const CreateItem= () => {
             <input
               type="file"
               className={styles.input}
-              accept=".png,.gif,.jpeg,.pdf"
+              accept=".png,.gif,.jpeg,.pdf,.mp4"
               placeholder="Images"
               onChange={onChange}
             />
