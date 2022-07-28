@@ -17,8 +17,8 @@ const GatedAccess = ({ accessGranted, setAccessGranted, currentWalletNftsImages 
 
     const renderNftImageContainer = () => (
         <div className="memes-container">
-            {currentWalletNftsImages.splice(0, 4).map((nft) => (
-                <div key={nft.id}>
+            {currentWalletNftsImages.splice(0, 4).map((nft, index) => (
+                <div key={index}>
                     <img src={nft} className="meme" />
                 </div>
             ))}
