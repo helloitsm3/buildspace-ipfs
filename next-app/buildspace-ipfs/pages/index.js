@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ReactPlayer from "react-player";
 import Wallet from "../components/Wallet";
 
 import useIPFS from "../hooks/useIPFS";
