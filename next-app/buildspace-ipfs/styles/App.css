@@ -42,8 +42,7 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
-    min-height: 90vh;
+    align-items: center;
     min-width: 100vw;
     padding: 0 15px;
 }
@@ -73,6 +72,19 @@ footer {
     background-size: 200% 200%;
     animation: gradient-animation 4s ease infinite;
     margin-left: 10px;
+}
+
+.m-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+}
+
+.discord-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
 }
 
 .footer-text {
@@ -111,6 +123,12 @@ footer {
 
 .products-container {
     background-color: rgba(255, 255, 255, 0.07);
+}
+
+.discord-btn {
+    background-color: rgb(92, 100, 244);
+    border-radius: 10px;
+    padding: 15px 40px;
 }
 
 .memes-container {

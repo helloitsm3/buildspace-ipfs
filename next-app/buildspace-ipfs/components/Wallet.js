@@ -1,4 +1,5 @@
 import GatedAccess from "./GatedAccess";
+import DiscordLogin from "./DiscordLogin";
 
 import { useEffect, useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
@@ -89,6 +90,8 @@ const Wallet = () => {
             <WalletMultiButton className="cta-button button-glow">
                 <span className="button-text">Solana</span>
             </WalletMultiButton>
+
+            <DiscordLogin />
         </div>
     );
 };

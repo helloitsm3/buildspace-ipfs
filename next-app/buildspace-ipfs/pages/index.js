@@ -1,12 +1,7 @@
 import Head from "next/head";
-import items from "./api/items.json";
 import Wallet from "../components/Wallet";
 
-import React, { useState, useEffect } from "react";
-
-//Constants
-const TWITTER_HANDLE = "_buildspace";
-const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
+import React from "react";
 
 export default function App() {
     return (
@@ -17,7 +12,7 @@ export default function App() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main>
+            <main className="m-container">
                 <Wallet />
             </main>
 
