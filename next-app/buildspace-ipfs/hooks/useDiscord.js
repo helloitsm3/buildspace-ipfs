@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const useDiscord = () => {
+const useDiscord = (server_id) => {
     const [account, setAccount] = useState(null);
 
     useEffect(() => {
@@ -15,7 +15,17 @@ const useDiscord = () => {
             })
                 .then((result) => result.json())
                 .then((response) => {
-                    setAccount(response);
+                    fetch("https://discordapp.com/api/users/@me/guilds", {
+                        headers: {
+                            authorization: `${tokenType} ${accessToken}`,
+                        },
+                    })
+                        .then((guild) => guild.json())
+                        .then((guild) => {
+                            if (!guild?.message?.includes("rate limited")) {
+                                setAccount({ account: response, guild: guild.filter((f) => f.id === server_id) });
+                            }
+                        });
                 })
                 .catch(console.error);
         }
