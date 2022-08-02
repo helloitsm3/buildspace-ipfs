@@ -6,7 +6,6 @@ import CreateItem from "./CreateItem";
 
 const GatedAccess = ({ accessGranted, setAccessGranted, currentWalletNftsImages }) => {
     const [viewNfts, setViewNfts] = useState(false);
-    const [viewMemes, setViewMemes] = useState(false);
     const { creating, setCreating } = useCreating();
 
     const renderAccessDeniedContainer = () => (
@@ -25,6 +24,7 @@ const GatedAccess = ({ accessGranted, setAccessGranted, currentWalletNftsImages 
         </div>
     );
 
+    console.log(currentWalletNftsImages);
     return (
         <div className="gated-container">
             {!accessGranted && (
@@ -47,14 +47,11 @@ const GatedAccess = ({ accessGranted, setAccessGranted, currentWalletNftsImages 
                     <button className="cta-button" onClick={() => setCreating(!creating)}>
                         {creating ? "Back" : "Create Product"}
                     </button>
-                    <button className="cta-button" onClick={() => setViewMemes(!viewMemes)}>
-                        {viewMemes ? "Back" : "View Memes"}
-                    </button>
                 </>
             ) : null}
 
             {creating && <CreateItem />}
-            {viewMemes && <Memes />}
+            <Memes />
             {viewNfts && renderNftImageContainer()}
             {!accessGranted && renderAccessDeniedContainer()}
         </div>

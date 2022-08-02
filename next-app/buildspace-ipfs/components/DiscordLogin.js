@@ -5,17 +5,17 @@ const RenderBtn = () => {
     const client_id = "YOUR_DISCORD_CLIENT_ID";
     const baseUrl = "https://discord.com/api/oauth2/authorize";
     const scope = "identify%20guilds%20guilds.members.read";
+    const redirect_uri = "http%3A%2F%2Flocalhost%3A3000";
 
     return (
-        <a
-            href={`${baseUrl}?client_id=${client_id}&redirect_uri=http%3A%2F%2Flocalhost%3A3000&response_type=${response_type}&scope=${scope}`}
-        >
+        <a href={`${baseUrl}?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}`}>
             <span className="cta-button discord-btn">Login with Discord</span>
         </a>
     );
 };
 
 const DiscordLogin = () => {
+    // This is to check if the user is in a particular server
     const discord = useDiscord("869321815833575434");
     const { account, guild } = discord || {};
 
