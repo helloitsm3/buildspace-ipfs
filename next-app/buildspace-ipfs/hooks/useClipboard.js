@@ -27,7 +27,7 @@ const useClipboard = () => {
         };
     }, []);
 
-    return image;
+    return [image, setImage];
 };
 
 export default useClipboard;

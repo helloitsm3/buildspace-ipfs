@@ -8,7 +8,9 @@ const Memes = () => {
 
     useEffect(() => {
         const getMemes = async () => {
+            setLoading(true);
             const results = await listUploads();
+            setLoading(false);
             setMemes(results);
         };
 
@@ -30,6 +32,7 @@ const Memes = () => {
     return (
         <section className="memes-container">
             {isLoading && <span>Loading...</span>}
+            {!isLoading && memes.length <= 0 && <span>You currently do not have any memes...</span>}
             <div className="grid">{renderMemesContainer()}</div>
         </section>
     );

@@ -24,7 +24,6 @@ const GatedAccess = ({ accessGranted, setAccessGranted, currentWalletNftsImages 
         </div>
     );
 
-    console.log(currentWalletNftsImages);
     return (
         <div className="gated-container">
             {!accessGranted && (

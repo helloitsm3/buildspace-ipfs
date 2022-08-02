@@ -20,6 +20,7 @@ import "../styles/App.css";
 import "../styles/Item.css";
 import "../styles/Wallet.css";
 import "../styles/globals.css";
+import "../styles/createitem.css";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 const client = createClient({
